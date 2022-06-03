@@ -21,7 +21,7 @@
 <section class="add-habit">
     <form action="{{ url_for('index.habit_tracker', calendar_day=date.strftime("%Y-%m-%d")) }}" method="POST" class="habit-form {{"expand-form" if habit_form.errors}}">
 
-        {{ habit_form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <textarea name="habit" id="habit" class="input-textarea {{ 'is-invalid' if habit_form.errors}}" cols="10" rows="3" placeholder="Add a new habit">{{ habit_form.habit.data if habit_form.habit.data}}</textarea>
         {% for error in habit_form.errors %}
             <span class="form-error">{{ habit_form.errors[error][0] }}</span>
@@ -34,7 +34,7 @@
 <section class="habits">
     {% for habit in day_habits %}
     <form action="{{url_for('completed_habits.completed_habit', id=habit['_id'],date_completed=date.strftime('%Y-%m-%d'))}}" class="complete-habit-form" method="POST">
-        {{ habit_completed_form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <input type="hidden" name="habit" value="{{habit['_id']}}">
         <input type="hidden" name="date_completed" value="{{date}}">
         <button type="submit" class="btn user-habits {{'user-habits__completed' if habit['completed']}}">

@@ -3,7 +3,7 @@ from wtforms import StringField, DateTimeField
 from wtforms.validators import DataRequired, regexp
 
 class HabitForm(FlaskForm):
-    habit = StringField('habit', validators=[regexp(r'\b.{3,}', message="Habit must contain three(3) or more characters")])
+    habit = StringField('habit', validators=[regexp(r'\b.{3,}', message="Please enter three(3) or more characters to add a habit")])
     date_started = DateTimeField('date_started', validators=[DataRequired()])
 
 class HabitCompletedForm(FlaskForm):
