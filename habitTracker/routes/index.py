@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, current_app, request, url_for
+from flask import Blueprint, redirect, render_template, current_app, url_for
 from datetime import datetime
 from pymongo.collection import Collection
 import math
