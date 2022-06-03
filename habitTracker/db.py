@@ -14,7 +14,7 @@ class InitDb:
     def __post_init__(self) -> None:
         """Initialize mongo client connection and db"""
         mongo_uri = self.app.config["MONGO_URI"]
-        self.__client = MongoClient(mongo_uri, tz_aware=True, serverSelectionTimeoutMS=2000)
+        self.__client = MongoClient(mongo_uri, tz_aware=True)
 
     @property
     def client(self) -> MongoClient:
