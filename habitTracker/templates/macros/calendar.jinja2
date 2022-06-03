@@ -1,0 +1,8 @@
+{% macro calendar_day_link(date="", date_diff="") -%}
+   {%set new_date = date |get_date(date_diff) %}
+    <a href="{{ url_for('index.habit_tracker', calendar_day=new_date.strftime('%Y-%m-%d')) }}" class="btn day-link  {{ 'day-link__current' if date_diff == 0}}">
+        <p>{{new_date.strftime('%a')}}</p>
+        <p>{{new_date.strftime('%d')}}</p>
+        <p>{{new_date.strftime('%b')}}</p>
+    </a>
+{%- endmacro %}

@@ -1,0 +1,59 @@
+{% extends "layout/base.html" %}
+{% from './macros/calendar.jinja2' import calendar_day_link %}
+{% block title%}Home{% endblock %}
+{% block main %}
+<section class="habit-tracker__header">
+    <a href="{{ url_for('index.habit_tracker') }}" class="brand">
+        <h1>Habit Tracker</h1>
+    </a>
+
+    <a class="btn expand-button">
+        &#9547;
+    </a>
+</section>
+
+<section class="calendar">
+    {% for i in range(-3,4) %}
+    {{ calendar_day_link(date, i) }}
+    {% endfor %}
+</section>
+
+<section class="add-habit">
+    <form action="{{ url_for('index.habit_tracker', calendar_day=date.strftime("%Y-%m-%d")) }}" method="POST" class="habit-form {{"expand-form" if habit_form.errors}}">
+
+        {{ habit_form.csrf_token }}
+        <textarea name="habit" id="habit" class="input-textarea {{ 'is-invalid' if habit_form.errors}}" cols="10" rows="3" placeholder="Add a new habit">{{ habit_form.habit.data if habit_form.habit.data}}</textarea>
+        {% for error in habit_form.errors %}
+            <span class="form-error">{{ habit_form.errors[error][0] }}</span>
+        {% endfor %}
+        <input type="hidden" name="date_started" value="{{date}}" id="date_started">
+        <button type="submit" class="btn btn-primary habit-form-btn">Add</button>
+    </form>
+</section>
+
+<section class="habits">
+    {% for habit in day_habits %}
+    <form action="{{url_for('completed_habits.completed_habit', id=habit['_id'],date_completed=date.strftime('%Y-%m-%d'))}}" class="complete-habit-form" method="POST">
+        {{ habit_completed_form.csrf_token }}
+        <input type="hidden" name="habit" value="{{habit['_id']}}">
+        <input type="hidden" name="date_completed" value="{{date}}">
+        <button type="submit" class="btn user-habits {{'user-habits__completed' if habit['completed']}}">
+            {{habit["habit"]}}
+        </button>
+    </form>
+    {% endfor %}
+    <p class="page-nav">
+        {% if page > 1 and no_of_pages >= page %}
+        <a href="{{ url_for('index.habit_tracker',calendar_day=date.strftime("%Y-%m-%d"),page=(page-1)) }}" class="btn  page-nav_btn page-nav_prev">
+            prev
+        </a>
+        {% endif %}
+        {% if no_of_pages > page %}
+        <a href="{{ url_for('index.habit_tracker',calendar_day=date.strftime("%Y-%m-%d"),page=(page+1))}}" class="btn page-nav_btn page-nav_next">
+            next
+        </a>
+        {% endif %}
+    </p>
+</section>
+    
+{% endblock %}

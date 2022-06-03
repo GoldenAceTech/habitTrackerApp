@@ -1,0 +1,229 @@
+@import 'font.css';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+:root {
+  --primary-color: #fdcd93;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+body {
+  font-family: system;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.main {
+  width: 50%;
+  min-width: 400px;
+  margin: 1rem auto;
+  position: relative;
+}
+
+.btn {
+  font-weight: 600;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1.05rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+  color: #000;
+  background-color: var(--primary-color);
+}
+
+.habit-tracker__header {
+  position: relative;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  color: #fff;
+}
+
+.brand {
+  color: inherit;
+}
+
+.expand-button {
+  transition: all 0.2s ease-in;
+  border-radius: 0.5rem;
+}
+
+.add-habit {
+  position: relative;
+}
+
+.habit-form {
+  position: absolute;
+  top: calc(100% + 1.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  transition: all 0.25s ease-out;
+}
+
+.input-textarea {
+  width: 100%;
+  max-height: 100px;
+  margin: 0.5rem auto;
+  border: 1px solid #3d3d3d;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: 500;
+  outline: none;
+}
+
+.habit-form-btn {
+  display: block;
+  margin-left: auto;
+  padding: 0.5rem 1.5rem;
+}
+
+.expand-form {
+  opacity: 1;
+  width: 100%;
+  height: max-content;
+  visibility: visible;
+}
+
+
+.calendar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.day-link  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+.day-link__current {
+  border: 3px solid var(--primary-color);
+  box-shadow: 0px 0px 3px 0px var(--primary-color);
+}
+
+.form-error {
+  color: #dc3545;
+  font-size: 0.9rem;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.is-invalid:focus {
+  box-shadow: 0 0 0 0.25rem #dc354540;
+}
+
+.complete-habit-form {
+  margin: 1rem auto;
+}
+
+.user-habits {
+  width: 100%;
+  padding-right: 3rem;
+  font-size: 1.3rem;
+  border: 0.25rem solid var(--primary-color);
+  background-color: #fff;
+  text-align: left;
+  position: relative;
+}
+
+.user-habits__completed::after {
+  content: '✔' ;
+  font-size: 0.5rem;
+  position: absolute;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #fff;
+  background-color: #198754;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.page-nav {
+  position: relative;
+  width: 100%;
+}
+
+.page-nav_btn {
+  position: absolute;
+  border: 2px solid var(--primary-color);
+  padding: 0.5rem 1.5rem;
+  color: #000;
+}
+
+.page-nav_next {
+  right: 1rem;
+}
+
+.page-nav_prev {
+  left: 1rem;
+}
+
+@media (hover: hover) {
+  .expand-button:hover {
+    color: #000;
+    background-color: #fff;
+  }
+
+  .day-link:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .day-link__current:hover {
+    background-color: var(--primary-color);
+    color: #000;
+  }
+  
+
+  .user-habits:hover {
+    background-color: var(--primary-color);
+  }
+
+  .page-nav_btn:hover {
+    background-color: var(--primary-color);
+  }
+}
