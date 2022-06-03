@@ -1,12 +1,12 @@
 from datetime import date, timedelta
 from flask import Flask
-from .config import DevConfig
+from .config import app_config
 from flask_wtf.csrf import CSRFProtect
 from .schema import HabitForm, HabitCompletedForm
 
 csrf = CSRFProtect()
 
-def create_app(env_config=DevConfig):
+def create_app(env_config=app_config):
     app = Flask(__name__, template_folder="templates", static_folder="static")
     csrf.init_app(app)
     app.config.from_object(env_config)

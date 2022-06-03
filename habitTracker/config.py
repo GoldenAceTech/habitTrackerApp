@@ -32,3 +32,7 @@ class TestConfig(DevConfig):
     """
 
     MONGO_URI = config.get("TEST_URI")
+
+app_config = DevConfig
+if config.get("FLASK_ENV") == "production":
+    app_config = ProdConfig
