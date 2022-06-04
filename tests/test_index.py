@@ -113,7 +113,7 @@ def test_form_error(client: FlaskClient, app: Flask, global_var: _AppCtxGlobals)
     response_nohabit = client.post(url, data=habit_data)
 
     assert response_nocsrf.status_code == 400
-    assert b"Habit must contain three(3) or more characters" in response_nohabit.data
+    assert b"Please enter three(3) or more characters to add a habit" in response_nohabit.data
 
 
 def test_completed_habit(client: FlaskClient, app: Flask, habits_db: Callable, global_var: _AppCtxGlobals):

@@ -81,8 +81,8 @@ body {
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  visibility: hidden;
-  transition: all 0.25s ease-out;
+  opacity: 0;
+  transition: all 0.2s ease-out;
 }
 
 .input-textarea {
@@ -108,7 +108,6 @@ body {
   opacity: 1;
   width: 100%;
   height: max-content;
-  visibility: visible;
 }
 
 
