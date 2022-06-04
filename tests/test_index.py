@@ -7,8 +7,6 @@ import pytest
 from random import randint, choice
 from random_words import verbs
 from pymongo.collection import Collection
-from bson import ObjectId
-
 
 random_date = datetime(randint(2022, 2023), randint(1, 12), randint(1, 28))
 
